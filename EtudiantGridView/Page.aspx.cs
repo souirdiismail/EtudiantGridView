@@ -56,7 +56,7 @@ namespace EtudiantGridView
         {
             try
             {
-                FileUpload x = (FileUpload)GridView1.FooterRow.FindControl("PhotoUpload");
+                FileUpload x = (FileUpload)GridView1.FooterRow.FindControl("img");
                 SqlDataSource1.InsertParameters["nom"].DefaultValue =
                     ((TextBox)GridView1.FooterRow.FindControl("nom")).Text;
 

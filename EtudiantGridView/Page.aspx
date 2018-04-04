@@ -87,14 +87,15 @@
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="img" SortExpression="img">
                         <EditItemTemplate>
-                            <asp:Image ID="Image1" runat="server" ImageUrl='<%#"Files/"+Eval("img") %>' Width="50px" />
+                                <asp:Image ID="Image1" runat="server" />
                         </EditItemTemplate>
                         <FooterTemplate>
                             <asp:FileUpload ID="img" runat="server" />
                         </FooterTemplate>
                         <ItemTemplate>
                             <asp:Label ID="Label6" runat="server" Text='<%# Bind("img") %>'></asp:Label>
-                            <asp:Image ID="Image1" runat="server" />
+                            <asp:Image ID="Image2" runat="server" ImageUrl='<%#"Files/"+Eval("img") %>' Width="50px" />
+
                         </ItemTemplate>
                     </asp:TemplateField>
                 </Columns>
