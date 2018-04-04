@@ -12,6 +12,19 @@
             <asp:GridView ID="GridView1" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" CellPadding="4" DataKeyNames="id" DataSourceID="SqlDataSource1" ForeColor="#333333" GridLines="None" Height="197px" ShowFooter="True" Width="602px">
                 <AlternatingRowStyle BackColor="White" />
                 <Columns>
+                    <asp:TemplateField HeaderText="Supp" SortExpression="Supp">
+                        <EditItemTemplate>
+                            <asp:CheckBox ID="CheckBox1" runat="server" Checked='<%# Bind("Supp") %>'   OnClick="etudecheckbox(this)"/>
+                        </EditItemTemplate>
+                        <HeaderTemplate>
+                            <asp:CheckBox ID="checkall" runat="server" onclick="checkedall(this)" />
+                            <br />
+                            <asp:Button ID="Button5" runat="server" Text="Suppression Multiple" OnClick="Button5_Click" />
+                        </HeaderTemplate>
+                        <ItemTemplate>
+                            <asp:CheckBox ID="CheckBox1" runat="server" Checked='<%# Bind("Supp") %>' Enabled="false" OnClick="etudecheckbox(this)"/>
+                        </ItemTemplate>
+                    </asp:TemplateField>
                     <asp:TemplateField ShowHeader="False">
                         <EditItemTemplate>
                             <asp:Button ID="Button1" runat="server" CausesValidation="True" CommandName="Update" Text="Update" />
@@ -87,6 +100,7 @@
                         </FooterTemplate>
                         <ItemTemplate>
                             <asp:Label ID="Label6" runat="server" Text='<%# Bind("img") %>'></asp:Label>
+                            <asp:Image ID="Image1" runat="server" />
                         </ItemTemplate>
                     </asp:TemplateField>
                 </Columns>
@@ -132,7 +146,36 @@
                     <asp:Parameter Name="original_img" Type="String" />
                 </UpdateParameters>
             </asp:SqlDataSource>
+
         </div>
     </form>
+    <script type="text/javascript" language="javascript">
+
+    function checkedall(checkbox) 
+    {
+        var gridView = document.getElementById("GridView1");
+        for (i = 1; i < gridView.rows.length; i++) 
+        {
+            gridView.rows[i].cells[0].getElementsByTagName("INPUT")[0].checked = checkbox.checked;
+        }
+    }
+
+    function etudecheckbox(checkbox) 
+    {
+        var one_checked = false;
+        var gridView = document.getElementById("GridView1");
+
+        for (i = 1; i < gridView.rows.length; i++) 
+        {
+            if (gridView.rows[i].cells[0].getElementsByTagName("INPUT")[0].checked == false) 
+            {
+                one_checked = true;
+                break;
+            }
+        }
+
+        gridView.rows[0].cells[0].getElementsByTagName("INPUT")[0].checked = !one_checked;
+    }
+</script>
 </body>
 </html>
