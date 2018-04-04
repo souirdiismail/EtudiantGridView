@@ -33,7 +33,7 @@
                         <ItemTemplate>
                             <asp:Button ID="Button1" runat="server" CausesValidation="False" CommandName="Edit" Text="Edit" />
                             &nbsp;<asp:Button ID="Button2" runat="server" CausesValidation="False" CommandName="Select" Text="Select" />
-                            &nbsp;<asp:Button ID="Button3" runat="server" CausesValidation="False" CommandName="Delete" OnClick="Button3_Click" Text="Delete" />
+                            &nbsp;<asp:Button ID="Button3" runat="server" CausesValidation="False" CommandName="Delete" onclientlick="return Confirm('Are you sure ?')" OnClick="Button3_Click" Text="Delete" />
                         </ItemTemplate>
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="id" InsertVisible="False" SortExpression="id">
@@ -50,9 +50,11 @@
                     <asp:TemplateField HeaderText="nom" SortExpression="nom">
                         <EditItemTemplate>
                             <asp:TextBox ID="TextBox1" runat="server" Text='<%# Bind("nom") %>'></asp:TextBox>
+                            <asp:CustomValidator ID="CustomValidator1" runat="server" ControlToValidate="TextBox1" ErrorMessage="Le nom est obligatoire" ForeColor="Red" ValidateEmptyText="True">*</asp:CustomValidator>
                         </EditItemTemplate>
                         <FooterTemplate>
                             <asp:TextBox ID="nom" runat="server"></asp:TextBox>
+                            <asp:CustomValidator ID="CustomValidator2" runat="server" ControlToValidate="nom" ErrorMessage="empty !" ForeColor="Red" ValidateEmptyText="True">*</asp:CustomValidator>
                         </FooterTemplate>
                         <ItemTemplate>
                             <asp:Label ID="Label2" runat="server" Text='<%# Bind("nom") %>'></asp:Label>
@@ -64,6 +66,7 @@
                         </EditItemTemplate>
                         <FooterTemplate>
                             <asp:TextBox ID="Prenom" runat="server"></asp:TextBox>
+                            <asp:CustomValidator ID="CustomValidator3" runat="server" ControlToValidate="Prenom" ErrorMessage="empty prenom !" ForeColor="Red" ValidateEmptyText="True">*</asp:CustomValidator>
                         </FooterTemplate>
                         <ItemTemplate>
                             <asp:Label ID="Label3" runat="server" Text='<%# Bind("prenom") %>'></asp:Label>
@@ -73,6 +76,9 @@
                         <EditItemTemplate>
                             <asp:TextBox ID="TextBox3" runat="server" Text='<%# Bind("adresse") %>'></asp:TextBox>
                         </EditItemTemplate>
+                        <FooterTemplate>
+                            <asp:TextBox ID="adresse" runat="server"></asp:TextBox>
+                        </FooterTemplate>
                         <ItemTemplate>
                             <asp:Label ID="Label4" runat="server" Text='<%# Bind("adresse") %>'></asp:Label>
                         </ItemTemplate>

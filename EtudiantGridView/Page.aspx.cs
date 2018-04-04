@@ -17,6 +17,7 @@ namespace EtudiantGridView
         {
 
         }
+        
         static string co_str = ConfigurationManager.ConnectionStrings["mesetudiantConnectionString"].ConnectionString;
         protected void Button3_Click(object sender, EventArgs e)
         {
@@ -54,6 +55,7 @@ namespace EtudiantGridView
         }
         protected void Button4_Click(object sender, EventArgs e)
         {
+            
             try
             {
                 FileUpload x = (FileUpload)GridView1.FooterRow.FindControl("img");
@@ -64,8 +66,7 @@ namespace EtudiantGridView
                     ((TextBox)GridView1.FooterRow.FindControl("prenom")).Text;
 
               
-                string imgname = GetTimestamp(DateTime.Now) + "_" + x.PostedFile.FileName;
-
+                string imgname = GetTimestamp(DateTime.Now) + "_" + x.FileName;
                 SqlDataSource1.InsertParameters["img"].DefaultValue = imgname;
 
                 x.PostedFile.SaveAs(Server.MapPath("Files") + "\\" + imgname);
