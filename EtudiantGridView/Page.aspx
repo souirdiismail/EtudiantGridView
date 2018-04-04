@@ -14,7 +14,7 @@
                 <Columns>
                     <asp:TemplateField HeaderText="Supp" SortExpression="Supp">
                         <EditItemTemplate>
-                            <asp:CheckBox ID="CheckBox1" runat="server" Checked='<%# Bind("Supp") %>'   OnClick="etudecheckbox(this)"/>
+                            <asp:CheckBox ID="CheckBox1" runat="server"   OnClick="etudecheckbox(this)"/>
                         </EditItemTemplate>
                         <HeaderTemplate>
                             <asp:CheckBox ID="checkall" runat="server" onclick="checkedall(this)" />
@@ -22,7 +22,7 @@
                             <asp:Button ID="Button5" runat="server" Text="Suppression Multiple" OnClick="Button5_Click" />
                         </HeaderTemplate>
                         <ItemTemplate>
-                            <asp:CheckBox ID="CheckBox1" runat="server" Checked='<%# Bind("Supp") %>' Enabled="false" OnClick="etudecheckbox(this)"/>
+                            <asp:CheckBox ID="CheckBox1" runat="server"  OnClick="etudecheckbox(this)"/>
                         </ItemTemplate>
                     </asp:TemplateField>
                     <asp:TemplateField ShowHeader="False">
@@ -41,7 +41,7 @@
                             <asp:Label ID="Label1" runat="server" Text='<%# Eval("id") %>'></asp:Label>
                         </EditItemTemplate>
                         <FooterTemplate>
-                            <asp:Button ID="Button4" runat="server" Text="Add" />
+                            <asp:Button ID="Button4" runat="server" Text="Add" OnClick="Button4_Click" />
                         </FooterTemplate>
                         <ItemTemplate>
                             <asp:Label ID="Label1" runat="server" Text='<%# Bind("id") %>'></asp:Label>
@@ -52,7 +52,7 @@
                             <asp:TextBox ID="TextBox1" runat="server" Text='<%# Bind("nom") %>'></asp:TextBox>
                         </EditItemTemplate>
                         <FooterTemplate>
-                            <asp:TextBox ID="TextBox6" runat="server"></asp:TextBox>
+                            <asp:TextBox ID="nom" runat="server"></asp:TextBox>
                         </FooterTemplate>
                         <ItemTemplate>
                             <asp:Label ID="Label2" runat="server" Text='<%# Bind("nom") %>'></asp:Label>
@@ -63,7 +63,7 @@
                             <asp:TextBox ID="TextBox2" runat="server" Text='<%# Bind("prenom") %>'></asp:TextBox>
                         </EditItemTemplate>
                         <FooterTemplate>
-                            <asp:TextBox ID="TextBox6" runat="server"></asp:TextBox>
+                            <asp:TextBox ID="Prenom" runat="server"></asp:TextBox>
                         </FooterTemplate>
                         <ItemTemplate>
                             <asp:Label ID="Label3" runat="server" Text='<%# Bind("prenom") %>'></asp:Label>
@@ -73,9 +73,6 @@
                         <EditItemTemplate>
                             <asp:TextBox ID="TextBox3" runat="server" Text='<%# Bind("adresse") %>'></asp:TextBox>
                         </EditItemTemplate>
-                        <FooterTemplate>
-                            <asp:TextBox ID="TextBox6" runat="server"></asp:TextBox>
-                        </FooterTemplate>
                         <ItemTemplate>
                             <asp:Label ID="Label4" runat="server" Text='<%# Bind("adresse") %>'></asp:Label>
                         </ItemTemplate>
@@ -84,19 +81,16 @@
                         <EditItemTemplate>
                             <asp:TextBox ID="TextBox4" runat="server" Text='<%# Bind("ville") %>'></asp:TextBox>
                         </EditItemTemplate>
-                        <FooterTemplate>
-                            <asp:TextBox ID="TextBox6" runat="server"></asp:TextBox>
-                        </FooterTemplate>
                         <ItemTemplate>
                             <asp:Label ID="Label5" runat="server" Text='<%# Bind("ville") %>'></asp:Label>
                         </ItemTemplate>
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="img" SortExpression="img">
                         <EditItemTemplate>
-                            <asp:TextBox ID="TextBox5" runat="server" Text='<%# Bind("img") %>'></asp:TextBox>
+                            <asp:Image ID="Image1" runat="server" ImageUrl='<%#"Files/"+Eval("img") %>' Width="50px" />
                         </EditItemTemplate>
                         <FooterTemplate>
-                            <asp:FileUpload ID="FileUpload1" runat="server" />
+                            <asp:FileUpload ID="img" runat="server" />
                         </FooterTemplate>
                         <ItemTemplate>
                             <asp:Label ID="Label6" runat="server" Text='<%# Bind("img") %>'></asp:Label>

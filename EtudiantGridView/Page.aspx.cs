@@ -38,16 +38,45 @@ namespace EtudiantGridView
             sb.Remove(sb.ToString().LastIndexOf(","), 1);
 
             SqlConnection con = new SqlConnection(co_str);
-            SqlCommand cmd = new SqlCommand("etudiantSuppression", con);
+            SqlCommand cmd = new SqlCommand("etudMultiSupp", con);
             cmd.CommandType = CommandType.StoredProcedure;
 
-            SqlParameter parameter = new SqlParameter("@IDs", sb.ToString());
+            SqlParameter parameter = new SqlParameter("@id", sb.ToString());
             cmd.Parameters.Add(parameter);
             con.Open();
             cmd.ExecuteNonQuery();
             con.Close();
             GridView1.DataBind();
         }
+        public static String GetTimestamp(DateTime value)
+        {
+            return value.ToString("yyyy_MM_dd_HHmmssffff");
+        }
+        protected void Button4_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                FileUpload x = (FileUpload)GridView1.FooterRow.FindControl("PhotoUpload");
+                SqlDataSource1.InsertParameters["nom"].DefaultValue =
+                    ((TextBox)GridView1.FooterRow.FindControl("nom")).Text;
+
+                SqlDataSource1.InsertParameters["prenom"].DefaultValue =
+                    ((TextBox)GridView1.FooterRow.FindControl("prenom")).Text;
+
+              
+                string imgname = GetTimestamp(DateTime.Now) + "_" + x.PostedFile.FileName;
+
+                SqlDataSource1.InsertParameters["img"].DefaultValue = imgname;
+
+                x.PostedFile.SaveAs(Server.MapPath("Files") + "\\" + imgname);
+                SqlDataSource1.Insert();
+
+            }
+            catch (Exception ex)
+            {
+                //throw;
+            }
+        }
     }
-    }
+    
 }
